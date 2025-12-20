@@ -4,7 +4,9 @@ import pygame
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_RADIUS, PLAYER_TURN_SPEED
 from logger import log_state
 # from circleshape import CircleShape
-from player import *
+from player import Player
+from asteroidfield import AsteroidField
+from asteroid import Asteroid
 
 
 def main():
@@ -17,10 +19,14 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
     player = Player(x, y, PLAYER_RADIUS)
+    asteroid_field = AsteroidField()
 
 
     while True:
