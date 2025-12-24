@@ -45,6 +45,12 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+        for thing in asteroids:
+            for shot in shots:
+                if thing.collides_with(shot):
+                    log_event("asteroid_shot")
+                    shot.kill()
+                    thing.kill()
         for thing in drawable:
             thing.draw(screen)
         pygame.display.flip()

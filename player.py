@@ -35,7 +35,7 @@ class Player(CircleShape):
            self.rotate(dt)
         if keys[pygame.K_z]:
             self.move(dt)
-        if keys[pygame.K_x]:
+        if keys[pygame.K_s]:
            self.move(-dt)
         if keys[pygame.K_SPACE]:
             self.cooldown_timer -= dt
