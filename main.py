@@ -7,7 +7,7 @@ from logger import log_state, log_event
 from circleshape import *
 from player import Player
 from asteroidfield import AsteroidField
-from asteroid import Asteroid
+from asteroid import *
 from shot import Shot
 
 
@@ -51,6 +51,7 @@ def main():
                     log_event("asteroid_shot")
                     shot.kill()
                     thing.kill()
+                    thing.split()
         for thing in drawable:
             thing.draw(screen)
         pygame.display.flip()
