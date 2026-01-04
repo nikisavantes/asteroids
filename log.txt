@@ -1,0 +1,50 @@
+file name = log.txt
+purpose = My progress diary and todos
+Most recent entries on top
+
+****************************
+*** DESIRED IMPROVEMENTS ***
+****************************
+=== CODING STUFF ===
+====================
+* field is bigger than window, player can navigate off screen
+- improve my familiarity with the existing code
+- reorganise code so it is perfectly logical for me
+=== GAME IMPROVEMENTS ===
+=========================
+* adapt screen size to eric's laptop
+* wrap around screen (leaving top appears on bottom, etc)
+- can make 5 crashes instead of 1 before game ends
+- life count left on screen
+- points system: time alive counter (slow points)
+- points system: shooting asteroids (fast points)
+- shield functionality
+- hyperspace functionality
+- increase difficulty at certain score levels
+- fixed number of generated asteroids before next levels
+- on screen level indicator
+=== PACKAGE IMPROVEMENTS ===
+============================
+- adapt bindingS for other than azerty keyboards
+- choice of screen size/resolution
+- proper end game screen
+- in game instructions page
+- complete read.me on github
+=== ADDICTION FACTORS ===
+=========================
+- asteroids have colours
+- asteroids have asteroid shape instead of circles
+- player ship has tail end indented like the real game
+- 2 player option: sequential
+- 2 player option: simultaneous
+
+*********************************************
+*** ACTIVITY LOG = COMPLETED IMPROVEMENTS ***
+*********************************************
+04/01/2026
+- added log (this file) with improvements list
+25:12/2025
+- completed bootdev asteroids programming challenge, 14 commits total
+14/12/2025
+- started bootdev asteroids lesson, initial commit
+
