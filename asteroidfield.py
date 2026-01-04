@@ -38,19 +38,37 @@ class AsteroidField(pygame.sprite.Sprite):
         self.speed_step = 0.20        # +20% per 10 levels (pas aan)
         self.base_speed_min = 40      # was random(40,100)
         self.base_speed_max = 100
+        self.level_completed = False
+        self.completed_level = None
+        self.intermission_timer = 0.0
+        self.intermission_duration = 2.0
+        self.waiting_for_next_level = False
 
     def update(self, dt):
-        # Start level 1 meteen
+        # default: geen nieuw completion event deze frame
         self.level_completed = False
+
+        # start level 1
         if not self.started:
             self.start_level(self.level)
             self.started = True
             return
 
-        # Level is klaar als er geen asteroids meer bestaan (incl. splits)
+        # als we in intermission zitten: aftellen, nog NIET spawnen
+        if self.waiting_for_next_level:
+            self.intermission_timer -= dt
+            if self.intermission_timer <= 0:
+                self.waiting_for_next_level = False
+                self.level += 1
+                self.start_level(self.level)
+            return
+
+        # als alle asteroids op zijn: completion event + start intermission
         if len(self.asteroids) == 0:
-            self.level += 1
-            self.start_level(self.level)
+            self.level_completed = True
+            self.completed_level = self.level
+            self.waiting_for_next_level = True
+            self.intermission_timer = self.intermission_duration
 
     def start_level(self, level):
         config = LEVELS[(level - 1) % len(LEVELS)]
