@@ -28,18 +28,34 @@ class Player(CircleShape):
         # return self.rotation
 
     def update(self, dt):
+        self.cooldown_timer -= dt
+        if self.cooldown_timer < 0:
+            self.cooldown_timer = 0
+            
         keys = pygame.key.get_pressed()
         if keys[pygame.K_q]:
             self.rotate(-dt)
         if keys[pygame.K_d]:
-           self.rotate(dt)
+            self.rotate(dt)
         if keys[pygame.K_z]:
             self.move(dt)
         if keys[pygame.K_s]:
-           self.move(-dt)
+            self.move(-dt)
         if keys[pygame.K_SPACE]:
             self.cooldown_timer -= dt
             self.shoot()
+
+        # WRAP-AROUND
+        margin = self.radius
+        if self.position.x < -margin:
+            self.position.x = SCREEN_WIDTH + margin
+        elif self.position.x > SCREEN_WIDTH + margin:
+            self.position.x = -margin
+
+        if self.position.y < -margin:
+            self.position.y = SCREEN_HEIGHT + margin
+        elif self.position.y > SCREEN_HEIGHT + margin:
+            self.position.y = -margin
 
     def move(self, dt):
         unit_vector = pygame.Vector2(0, 1)
@@ -50,7 +66,6 @@ class Player(CircleShape):
     def shoot(self):
         if self.cooldown_timer > 0:
             return
-            print("dit mag je nooit printen")
         else:
             self.cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
         direction = pygame.Vector2(0, 1).rotate(self.rotation)

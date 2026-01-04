@@ -7,13 +7,14 @@ Most recent entries on top
 ****************************
 === CODING STUFF ===
 ====================
-* field is bigger than window, player can navigate off screen
+* field is bigger than window
 - improve my familiarity with the existing code
 - reorganise code so it is perfectly logical for me
 === GAME IMPROVEMENTS ===
 =========================
 * adapt screen size to eric's laptop
-* wrap around screen (leaving top appears on bottom, etc)
+- asteroids glide over each other, make them collide and then reverse direction
+- wrap around screen for asteroids (player ok)
 - can make 5 crashes instead of 1 before game ends
 - life count left on screen
 - points system: time alive counter (slow points)
@@ -43,6 +44,7 @@ Most recent entries on top
 *********************************************
 04/01/2026
 - added log (this file) with improvements list
+- added player wrap-around (not asteroids); Solves "player can navigate off screen"
 25:12/2025
 - completed bootdev asteroids programming challenge, 14 commits total
 14/12/2025
