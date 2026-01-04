@@ -28,10 +28,6 @@ class Player(CircleShape):
         # return self.rotation
 
     def update(self, dt):
-        self.cooldown_timer -= dt
-        if self.cooldown_timer < 0:
-            self.cooldown_timer = 0
-            
         keys = pygame.key.get_pressed()
         if keys[pygame.K_q]:
             self.rotate(-dt)
@@ -41,11 +37,15 @@ class Player(CircleShape):
             self.move(dt)
         if keys[pygame.K_s]:
             self.move(-dt)
+
+        # cooldown beter altijd laten aflopen
+        self.cooldown_timer = max(0, self.cooldown_timer - dt)
         if keys[pygame.K_SPACE]:
-            self.cooldown_timer -= dt
             self.shoot()
 
-        # WRAP-AROUND
+        self.wrap()
+
+    def wrap(self):
         margin = self.radius
         if self.position.x < -margin:
             self.position.x = SCREEN_WIDTH + margin
