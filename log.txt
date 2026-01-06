@@ -5,30 +5,29 @@ Most recent entries on top
 ****************************
 *** DESIRED IMPROVEMENTS ***
 ****************************
-=== CODING STUFF ===
-====================
-* field is bigger than window
-- improve my familiarity with the existing code
-- reorganise code so it is perfectly logical for me
+* speed increase every level
+* as from level 11 keep same number of spawns as level 10, just do speed increase
+=== BUGS & CODING STUFF ===
+===========================
 === GAME IMPROVEMENTS ===
 =========================
-* adapt screen size to eric's laptop
-- asteroids glide over each other: make them collide and then reverse direction
-- wrap around screen for asteroids (player ok)
-- can make 5 crashes instead of 1 before game ends
-- life count left on screen
-- points system: time alive counter (slow points)
-- points system: shooting asteroids (fast points)
+* score tonen bij einde spel
+* bullets wrap around
+* asteroids glide over each other: make them collide and then reverse direction
 - shield functionality
 - hyperspace functionality
 - increase difficulty at certain score levels
-- fixed number of generated asteroids before next levels
-- on screen level indicator
+* high scores bijhouden in een text file
+- GIGA asteroid every 20 levels
+- Aliosha request: only forward move with keys, aiming and pointing direction 
+using mouse
 === PACKAGE IMPROVEMENTS ===
 ============================
-- adapt bindingS for other than azerty keyboards
+- adapt bindings for other than azerty keyboards
 - choice of screen size/resolution
 - proper end game screen
+- high score screen
+- enter name when high score or personal record
 - in game instructions page
 - complete read.me on github
 === ADDICTION FACTORS ===
@@ -44,7 +43,22 @@ Most recent entries on top
 *********************************************
 04/01/2026
 - added log (this file) with improvements list
+- adapted screen size to eric's laptop
 - added player wrap-around (not asteroids); Solves "player can navigate off screen"
+- added asteroid wrap-around
+- added 10 levels with fixed numbers of asteroids per level
+- added level visualisation overlay top left
+- added speed increase per 10 levels
+- added scoring (1 point per 10 seconds survival time, 2 points per big asteroid, 
+5 per medium 1, 10 per small one)
+- added scoring overlay top right
+- added lives (can make 3 crashes instead of 1 before game ends)
+- added life count overlay bottom left 
+- added respawning in center of screen
+- added 2 seconds of invulnerability after respawning
+- added player ship is green while invulnerable
+- aliosha test played: not challenging enough, proposes speed increase with every level
+
 25:12/2025
 - completed bootdev asteroids programming challenge, 14 commits total
 14/12/2025
