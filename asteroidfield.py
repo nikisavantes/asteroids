@@ -37,7 +37,7 @@ class AsteroidField(pygame.sprite.Sprite):
         # Speed scaling per level
         self.speed_step = 0.50        # +50% snelheidswinst
         self.base_speed_min = 60      # was random(40,100)
-        self.base_speed_max = 80
+        self.base_speed_max = 200
         self.level_completed = False
         self.completed_level = None
         self.intermission_timer = 0.0

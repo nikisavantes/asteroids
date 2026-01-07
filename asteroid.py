@@ -21,11 +21,8 @@ class Asteroid(CircleShape):
         super().__init__(x, y, radius)
         self.rotation = random.uniform(0, 360)
         self.spin = random.uniform(-40, 40)  # graden per seconde
-        sides = random.randint(7, 12)
+        sides = random.randint(8, 12)
         self.shape = generate_rock_shape(radius, sides)
-
-    # def draw(self, screen):
-    #    pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
 
     def draw(self, screen):
         points = []

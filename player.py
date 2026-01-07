@@ -15,11 +15,21 @@ class Player(CircleShape):
     # in the Player class
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
-        a = self.position + forward * self.radius
-        b = self.position - forward * self.radius - right
-        c = self.position - forward * self.radius + right
-        return [a, b, c]
+        right = pygame.Vector2(0, 1).rotate(self.rotation + 90)
+
+        nose = self.position + forward * self.radius
+
+        # staart: V/hoekig (roofvogel)
+        tail_back = self.radius * 1.15
+        tail_w = self.radius * 0.75
+        tail_notch = self.radius * 0.55  # hoe diep de inkeping naar voren komt
+
+        left_tail  = self.position - forward * tail_back - right * tail_w
+        right_tail = self.position - forward * tail_back + right * tail_w
+        tail_center = self.position - forward * (tail_back - tail_notch)  # notch punt
+
+        # volgorde van punten is belangrijk (clockwise of counterclockwise)
+        return [nose, right_tail, tail_center, left_tail]
     
     def draw(self, screen):
         pygame.draw.polygon(screen, self.color, self.triangle(), LINE_WIDTH)

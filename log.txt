@@ -5,12 +5,11 @@ Most recent entries on top
 ****************************
 *** DESIRED IMPROVEMENTS ***
 ****************************
-* as from level 11 keep same number of spawns as level 10, just do speed increase
+- menu met easy en hardcore ()
 === BUGS & CODING STUFF ===
 ===========================
 === GAME IMPROVEMENTS ===
 =========================
-* asteroids glide over each other: make them collide and then reverse direction
 - shield functionality
 - hyperspace functionality
 - increase difficulty at certain score levels
@@ -26,10 +25,9 @@ using mouse
 - complete read.me on github
 === ADDICTION FACTORS ===
 =========================
-- bonussen oprapen (spread out fire power or more fire power, shields, hyperspace etc.)
+- bonussen oprapen (spread out fire power or more fire power, shields, 
+hyperspace etc.)
 - asteroids have colours
-- asteroids have asteroid shape instead of circles
-- player ship has tail end indented like the real game
 - 2 player option: sequential
 - 2 player option: simultaneous
 
@@ -39,8 +37,11 @@ using mouse
 07/01/2025
 - made shots wrap
 - made shots limited in length (through limiting their duration)
-- in creased base speed to 60 (instead of 40) and max speed to 200 (instead of 100)
-- 50% average speed increase per level
+- increased base speed of asteroids to min 60 and max 200 (instead of 40-100)
+- + 50% average speed increase per level
+- asteroids bounce off each other
+- asteroids have rock shape (instead of circle shape)
+- player ship has V-shaped tail
 06/01/2025
 - added show score at game end
 - added hiscores functionality
