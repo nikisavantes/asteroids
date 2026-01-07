@@ -5,19 +5,15 @@ Most recent entries on top
 ****************************
 *** DESIRED IMPROVEMENTS ***
 ****************************
-* speed increase every level
 * as from level 11 keep same number of spawns as level 10, just do speed increase
 === BUGS & CODING STUFF ===
 ===========================
 === GAME IMPROVEMENTS ===
 =========================
-* score tonen bij einde spel
-* bullets wrap around
 * asteroids glide over each other: make them collide and then reverse direction
 - shield functionality
 - hyperspace functionality
 - increase difficulty at certain score levels
-* high scores bijhouden in een text file
 - GIGA asteroid every 20 levels
 - Aliosha request: only forward move with keys, aiming and pointing direction 
 using mouse
@@ -25,13 +21,12 @@ using mouse
 ============================
 - adapt bindings for other than azerty keyboards
 - choice of screen size/resolution
-- proper end game screen
-- high score screen
-- enter name when high score or personal record
+- enter name when personal record
 - in game instructions page
 - complete read.me on github
 === ADDICTION FACTORS ===
 =========================
+- bonussen oprapen (spread out fire power or more fire power, shields, hyperspace etc.)
 - asteroids have colours
 - asteroids have asteroid shape instead of circles
 - player ship has tail end indented like the real game
@@ -41,6 +36,22 @@ using mouse
 *********************************************
 *** ACTIVITY LOG = COMPLETED IMPROVEMENTS ***
 *********************************************
+07/01/2025
+- made shots wrap
+- made shots limited in length (through limiting their duration)
+- in creased base speed to 60 (instead of 40) and max speed to 200 (instead of 100)
+- 50% average speed increase per level
+06/01/2025
+- added show score at game end
+- added hiscores functionality
+    - create hiscores.txt if it doesn't exist
+    - ask for player's initials (3 characters)
+    - append player initials and score if less than 10 items in the file
+    - if 10 items, remove lowest score and append player's initials and score
+    - sort the list from hi to low scores
+    - save the file
+- at game end if hiscore, show hiscore table with latest score blinking in red
+
 04/01/2026
 - added log (this file) with improvements list
 - adapted screen size to eric's laptop

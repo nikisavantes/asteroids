@@ -5,24 +5,24 @@ from asteroid import Asteroid
 from constants import *
 
 LEVELS = [
-    {"big": 3, "med": 0, "small": 0},  # 1
-    {"big": 4, "med": 0, "small": 0},  # 2
-    {"big": 4, "med": 2, "small": 0},  # 3
-    {"big": 5, "med": 2, "small": 0},  # 4
-    {"big": 5, "med": 3, "small": 0},  # 5
-    {"big": 6, "med": 3, "small": 0},  # 6
-    {"big": 6, "med": 3, "small": 2},  # 7
-    {"big": 7, "med": 3, "small": 2},  # 8
-    {"big": 7, "med": 4, "small": 2},  # 9
-    {"big": 8, "med": 4, "small": 2},  # 10
+    {"big": 4, "med": 2, "small": 1},  # 1
+    {"big": 4, "med": 4, "small": 2},  # 2
+    {"big": 5, "med": 2, "small": 3},  # 3
+    {"big": 5, "med": 4, "small": 4},  # 4
+    {"big": 6, "med": 3, "small": 5},  # 5
+    {"big": 6, "med": 5, "small": 6},  # 6
+    {"big": 7, "med": 3, "small": 7},  # 7
+    {"big": 7, "med": 5, "small": 8},  # 8
+    {"big": 8, "med": 4, "small": 9},  # 9
+    {"big": 8, "med": 6, "small": 10},  # 10
 ]
 
 class AsteroidField(pygame.sprite.Sprite):
     edges = [
-        [pygame.Vector2(1, 0),  lambda y: pygame.Vector2(-ASTEROID_MAX_RADIUS, y * SCREEN_HEIGHT)],
-        [pygame.Vector2(-1, 0), lambda y: pygame.Vector2(SCREEN_WIDTH + ASTEROID_MAX_RADIUS, y * SCREEN_HEIGHT)],
-        [pygame.Vector2(0, 1),  lambda x: pygame.Vector2(x * SCREEN_WIDTH, -ASTEROID_MAX_RADIUS)],
-        [pygame.Vector2(0, -1), lambda x: pygame.Vector2(x * SCREEN_WIDTH, SCREEN_HEIGHT + ASTEROID_MAX_RADIUS)],
+        [pygame.Vector2(1, 0),  lambda y: pygame.Vector2(-ASTEROID_MAX_RADIUS/2, y * SCREEN_HEIGHT)],
+        [pygame.Vector2(-1, 0), lambda y: pygame.Vector2(SCREEN_WIDTH + (ASTEROID_MAX_RADIUS/2), y * SCREEN_HEIGHT)],
+        [pygame.Vector2(0, 1),  lambda x: pygame.Vector2(x * SCREEN_WIDTH, -ASTEROID_MAX_RADIUS/2)],
+        [pygame.Vector2(0, -1), lambda x: pygame.Vector2(x * SCREEN_WIDTH, SCREEN_HEIGHT + (ASTEROID_MAX_RADIUS/2))],
     ]
 
     def __init__(self, asteroid_group):
@@ -34,10 +34,10 @@ class AsteroidField(pygame.sprite.Sprite):
         self.started = False
         self.level_completed = False
 
-        # Speed scaling per “set van 10 levels”
-        self.speed_step = 0.20        # +20% per 10 levels (pas aan)
-        self.base_speed_min = 40      # was random(40,100)
-        self.base_speed_max = 100
+        # Speed scaling per level
+        self.speed_step = 0.50        # +50% snelheidswinst
+        self.base_speed_min = 60      # was random(40,100)
+        self.base_speed_max = 80
         self.level_completed = False
         self.completed_level = None
         self.intermission_timer = 0.0
@@ -73,8 +73,9 @@ class AsteroidField(pygame.sprite.Sprite):
     def start_level(self, level):
         config = LEVELS[(level - 1) % len(LEVELS)]
 
-        tier = (level - 1) // len(LEVELS)      # 0:1-10, 1:11-20, 2:21-30...
-        speed_mult = 1.0 + tier * self.speed_step
+        # tier = (level - 1) // len(LEVELS)      # 0:1-10, 1:11-20, 2:21-30...
+        # speed_mult = 1.0 + tier * self.speed_step
+        speed_mult = 1.0 + self.speed_step
 
         # Spawn: big/med/small met vaste radii
         for _ in range(config["big"]):
