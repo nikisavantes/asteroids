@@ -34,6 +34,10 @@ hyperspace etc.)
 *********************************************
 *** ACTIVITY LOG = COMPLETED IMPROVEMENTS ***
 *********************************************
+08/01/2026
+- added "easy/normal/hard core" mode selection in console (textbased), 
+with different base speeds for the asteroidss
+
 07/01/2025
 - made shots wrap
 - made shots limited in length (through limiting their duration)

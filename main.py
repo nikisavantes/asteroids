@@ -35,8 +35,7 @@ def draw_hiscore_table(screen, table_font, title_font, hiscore_list, highlight_i
         rect = surf.get_rect(center=(SCREEN_WIDTH // 2, start_y + i * line_h))
         screen.blit(surf, rect)
 
-
-def game_loop():
+def game_loop(base_speed_min=40, base_speed_max=100):
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0.0
@@ -48,7 +47,6 @@ def game_loop():
     mid_font = pygame.font.Font(None, 40)
     table_font = pygame.font.Font(None, 32)
 
-    print("Starting Asteroids with pygame version: {pygame.version.ver}")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
@@ -82,7 +80,7 @@ def game_loop():
 
         # recreate objects (worden automatisch aan groups toegevoegd via containers)
         player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
-        asteroid_field = AsteroidField(asteroids)
+        asteroid_field = AsteroidField(asteroids, base_speed_min, base_speed_max)
 
         # gameplay state
         score = 0
