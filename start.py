@@ -1,11 +1,12 @@
 # start.py
+# starts the game with a difficulty level choice
 import pygame
 from main import game_loop
 
 DIFFICULTIES = [
-    ("Easy", 40, 100),
-    ("Normal", 50, 125),
-    ("Hard-core", 60, 200),
+    ("Easy", 40, 100, 0.20),
+    ("Normal", 50, 125, 0.35),
+    ("Hard-core", 60, 200, 0.50),
 ]
 
 WIDTH, HEIGHT = 1360, 670
@@ -71,7 +72,7 @@ def run_menu():
         hint = small.render("ENTER to select - ESC to quit", True, "white")
         screen.blit(hint, hint.get_rect(center=(WIDTH // 2, 125)))
 
-        for i, (name, mn, mx) in enumerate(DIFFICULTIES):
+        for i, (name, mn, mx, ass) in enumerate(DIFFICULTIES):
             rect = make_button_rect(i)
 
             is_selected = (i == selected)
@@ -93,7 +94,7 @@ def run_menu():
 
     choice = DIFFICULTIES[selected]
     pygame.quit()
-    return choice  # (name, mn, mx)
+    return choice  # (name, mn, mx, ass)
 
 
 if __name__ == "__main__":
@@ -101,5 +102,5 @@ if __name__ == "__main__":
     if choice is None:
         raise SystemExit
 
-    _, mn, mx = choice
-    game_loop(base_speed_min=mn, base_speed_max=mx)
+    _, mn, mx, ass = choice
+    game_loop(base_speed_min=mn, base_speed_max=mx, ASTEROID_SPEED_STEP = ass)

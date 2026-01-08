@@ -2,6 +2,7 @@
 import traceback
 import pygame
 import sys
+import random
 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_RADIUS, ASTEROID_MIN_RADIUS
 from logger import log_state, log_event
@@ -35,8 +36,9 @@ def draw_hiscore_table(screen, table_font, title_font, hiscore_list, highlight_i
         rect = surf.get_rect(center=(SCREEN_WIDTH // 2, start_y + i * line_h))
         screen.blit(surf, rect)
 
-def game_loop(base_speed_min=40, base_speed_max=100):
+def game_loop(base_speed_min=40, base_speed_max=100, ASTEROID_SPEED_STEP=0.20):
     pygame.init()
+    pygame.mixer.init()
     clock = pygame.time.Clock()
     dt = 0.0
 
@@ -46,6 +48,8 @@ def game_loop(base_speed_min=40, base_speed_max=100):
     big_font = pygame.font.Font(None, 72)
     mid_font = pygame.font.Font(None, 40)
     table_font = pygame.font.Font(None, 32)
+    laser_sound = pygame.mixer.Sound("sounds/laser.wav")
+    laser_sound.set_volume(0.6)
 
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
@@ -80,6 +84,7 @@ def game_loop(base_speed_min=40, base_speed_max=100):
 
         # recreate objects (worden automatisch aan groups toegevoegd via containers)
         player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
+        player.laser_sound = laser_sound
         asteroid_field = AsteroidField(asteroids, base_speed_min, base_speed_max)
 
         # gameplay state
@@ -224,7 +229,6 @@ def game_loop(base_speed_min=40, base_speed_max=100):
             # ------ ASTEROID COLLISION -----
             asteroid_list = list(asteroids)
             n = len(asteroid_list)
-
             for i in range(n):
                 for j in range(i + 1, n):
                     a = asteroid_list[i]

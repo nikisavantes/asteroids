@@ -78,9 +78,9 @@ class Player(CircleShape):
     def shoot(self):
         if self.cooldown_timer > 0:
             return
-        else:
-            self.cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
+        self.cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
+        if hasattr(self, "laser_sound"):
+            self.laser_sound.play()
         direction = pygame.Vector2(0, 1).rotate(self.rotation)
         shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
         shot.velocity = direction * PLAYER_SHOOT_SPEED
-    
