@@ -5,7 +5,8 @@ Most recent entries on top
 ****************************
 *** DESIRED IMPROVEMENTS ***
 ****************************
-- menu met easy en hardcore ()
+- sound for asteroid collision and asteroid split
+- hiscores with indication of difficulty and level reached
 === BUGS & CODING STUFF ===
 ===========================
 === GAME IMPROVEMENTS ===
@@ -37,6 +38,7 @@ hyperspace etc.)
 08/01/2026
 - added "easy/normal/hard core" mode selection in console (textbased), 
 with different base speeds for the asteroidss
+- added shooting sound
 
 07/01/2025
 - made shots wrap

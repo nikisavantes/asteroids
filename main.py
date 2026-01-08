@@ -50,6 +50,12 @@ def game_loop(base_speed_min=40, base_speed_max=100, ASTEROID_SPEED_STEP=0.20):
     table_font = pygame.font.Font(None, 32)
     laser_sound = pygame.mixer.Sound("sounds/laser.wav")
     laser_sound.set_volume(0.6)
+    bigrockbreak = pygame.mixer.Sound("sounds/bigrockbreak.wav")
+    mediumrockbreak = pygame.mixer.Sound("sounds/mediumrockbreak.wav")
+    smallrockshoot = pygame.mixer.Sound("sounds/smallrockshoot.wav")
+    bigrockbreak.set_volume(0.7)
+    mediumrockbreak.set_volume(0.7)
+    smallrockshoot.set_volume(0.8)
 
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
@@ -85,6 +91,7 @@ def game_loop(base_speed_min=40, base_speed_max=100, ASTEROID_SPEED_STEP=0.20):
         # recreate objects (worden automatisch aan groups toegevoegd via containers)
         player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
         player.laser_sound = laser_sound
+        
         asteroid_field = AsteroidField(asteroids, base_speed_min, base_speed_max)
 
         # gameplay state
@@ -273,22 +280,24 @@ def game_loop(base_speed_min=40, base_speed_max=100, ASTEROID_SPEED_STEP=0.20):
                     break  # max 1 hit per frame
 
             # ---------- SHOT ↔ ASTEROID ----------
-            for a in asteroids:
-                for s in shots:
+            for a in list(asteroids):
+                for s in list(shots):
                     if a.collides_with(s):
                         log_event("asteroid_shot")
                         s.kill()
-
                         r = a.radius
                         if r <= ASTEROID_MIN_RADIUS:
                             score += 10
+                            smallrockshoot.play()
                         elif r <= ASTEROID_MIN_RADIUS * 2:
                             score += 5
+                            mediumrockbreak.play()   # medium split sound
                         else:
                             score += 2
-
+                            bigrockbreak.play()   # big split sound
                         a.split()
-            
+                        break
+
             # ---------- DRAW WORLD (alleen in PLAY) ----------
             # Kleur wordt bepaald door main (zoals jij het nu hebt)
             player.color = "green" if respawn_invuln > 0 else "white"
